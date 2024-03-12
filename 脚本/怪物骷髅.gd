@@ -42,7 +42,7 @@ func _on_追逐area_2d_body_exited(body: Node2D) -> void:
 
 func _on_被撞area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "玩家模块":
-		body.velocity.y -= 100
+		body.velocity.y -= 10
 		death()
 func death():
 	alive = false
