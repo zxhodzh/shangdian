@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://b22urch4hxp3l"]
+
+[ext_resource type="Texture2D" uid="uid://bgondcqvjk8fk" path="res://2D横板/MonedaD.png" id="1_1xox7"]
+[ext_resource type="Script" path="res://脚本/金币模块.gd" id="1_6iymg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvmng"]
+atlas = ExtResource("1_1xox7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6sjw"]
+atlas = ExtResource("1_1xox7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dpx1"]
+atlas = ExtResource("1_1xox7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv04f"]
+atlas = ExtResource("1_1xox7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_747wl"]
+atlas = ExtResource("1_1xox7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5wh2p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvmng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6sjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dpx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv04f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_747wl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 9.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqmr8"]
+radius = 8.0
+height = 16.0
+
+[node name="金币模块" type="Area2D"]
+y_sort_enabled = true
+script = ExtResource("1_6iymg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_5wh2p")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.939958
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_oqmr8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

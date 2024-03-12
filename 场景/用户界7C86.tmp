@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://hnx2ueqxko83"]
+
+[sub_resource type="GDScript" id="GDScript_q2etj"]
+script/source = "extends Label
+
+@onready var 玩家模块 = get_node(\"/root/主要场景/玩家模块\")
+#@onready var 玩家模块: CharacterBody2D = $\".\"
+#@onready var 玩家模块: CharacterBody2D = $\"玩家模块\"
+
+
+func _ready() -> void:
+	text = \"HP:\" + str(玩家模块.health)
+func _process(_delta: float) -> void:
+	text = \"HP:\" + str(玩家模块.health)
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_7k1ai"]
+script/source = "extends Label
+
+@onready var 金币模块 = get_node(\"/root/主要场景/金币模块\")
+@onready var 玩家模块 = get_node(\"/root/主要场景/玩家模块\")
+
+func _ready() -> void:
+	text = \"金币:\" + str(玩家模块.gold)
+func _process(_delta: float) -> void:
+	text = \"金币:\" + str(玩家模块.gold)
+"
+
+[node name="用户界面" type="CanvasLayer"]
+
+[node name="HPLabel" type="Label" parent="."]
+offset_right = 54.0
+offset_bottom = 23.0
+text = "HP："
+script = SubResource("GDScript_q2etj")
+
+[node name="金币Label2" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "金币："
+script = SubResource("GDScript_7k1ai")

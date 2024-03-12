@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=3 uid="uid://hnx2ueqxko83"]
+
+[sub_resource type="GDScript" id="GDScript_q2etj"]
+script/source = "extends Label
+
+@onready var 玩家模块 = get_node(\"/root/主要场景/玩家模块\")
+#@onready var 玩家模块: CharacterBody2D = $\".\"
+#@onready var 玩家模块: CharacterBody2D = $\"玩家模块\"
+
+
+func _ready() -> void:
+	text = \"HP:\" + str(玩家模块.health)
+func _process(_delta: float) -> void:
+	text = \"HP:\" + str(玩家模块.health)
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_7k1ai"]
+script/source = "extends Label
+
+#@onready var 金币模块 = get_node(\"/root/主要场景/金币模块\")
+@onready var 玩家模块 = get_node(\"/root/主要场景/玩家模块\")
+
+func _ready() -> void:
+	text = \"金币:\" + str(玩家模块.gold)
+func _process(_delta: float) -> void:
+	text = \"金币:\" + str(玩家模块.gold)
+"
+
+[sub_resource type="Animation" id="Animation_2xmug"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DAYLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fh0pn"]
+resource_name = "day_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DAYLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yeder"]
+resource_name = "day_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DAYLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oq583"]
+_data = {
+"RESET": SubResource("Animation_2xmug"),
+"day_in": SubResource("Animation_fh0pn"),
+"day_out": SubResource("Animation_yeder")
+}
+
+[node name="用户界面" type="CanvasLayer"]
+
+[node name="HPLabel" type="Label" parent="."]
+offset_right = 54.0
+offset_bottom = 23.0
+text = "HP："
+script = SubResource("GDScript_q2etj")
+
+[node name="金币Label2" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "金币："
+script = SubResource("GDScript_7k1ai")
+
+[node name="DAYLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "DAY"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oq583")
+}
