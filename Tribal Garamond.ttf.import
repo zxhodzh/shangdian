@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://brsw8sfi5u6jw"
+path="res://.godot/imported/Tribal Garamond.ttf-3321bafb361dc7911b77e5582b910bd2.fontdata"
+
+[deps]
+
+source_file="res://2D横板/Tribal Garamond.ttf"
+dest_files=["res://.godot/imported/Tribal Garamond.ttf-3321bafb361dc7911b77e5582b910bd2.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
