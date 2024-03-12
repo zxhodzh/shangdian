@@ -57,5 +57,5 @@ func death():
 func _on_撞人area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "玩家模块":
 		if alive:
-			body.health -= 10
+			body.health -= 40
 		death()
